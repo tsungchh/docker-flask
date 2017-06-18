@@ -1,3 +1,11 @@
-docker exec  mobydock_postgres_1 createdb -U postgres mobydock
+docker exec -it mobydock_postgres_1 createdb -U postgres mobydock
 
-docker exec  mobydock_postgres_1 psql -U postgres -c "CREATE USER mobydock WITH PASSWORD 'yourpassword'; GRANT ALL PRIVILEGES ON DATABASE mobydock to mobydock;"
+docker exec -it  mobydock_postgres_1 psql -U postgres -c "CREATE USER mobydock WITH PASSWORD 'yourpassword'; GRANT ALL PRIVILEGES ON DATABASE mobydock to mobydock;"
+
+-------------------------------
+
+SSL
+
+openssl req -newkey rsa:2048 -nodes -sha256 -keyout certs/productionexample.key -x509 -days 3650 -out certs/productionexample.crt -subj "/C=US/ST=NewYork/L=NewYork/O=IT/CN=fakemobydock.com"
+
+openssl dhparam -out certs/dhparam.pem 2048
