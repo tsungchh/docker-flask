@@ -1,9 +1,9 @@
 #!/bin/bash
 
 
-SERVER_IP="${SERVER_IP:-192.168.1.99}"
-SSH_USER="${SSH_USER:-$(whoami)}"
-KEY_USER="${KEY_USER:-$(whoami)}"
+SERVER_IP="${SERVER_IP:-198.211.116.45}"
+SSH_USER="${SSH_USER:-tsungchh}"
+KEY_USER="${KEY_USER:-tsungchh}"
 DOCKER_VERSION="${DOCKER_VERSION:-1.8.3}"
 
 DOCKER_PULL_IMAGES=("postgres:9.4.5" "redis:2.8.22")
@@ -18,11 +18,11 @@ STAGING SERVER (DIRECT VIRTUAL MACHINE) DIRECTIONS:
      <enter password>
      nano /etc/network/interfaces
      [change the last line to look like this, remember to set the correct
-      gateway for your router's IP address if it's not 192.168.1.1]
+      gateway for your router's IP address if it's not 198.211.116.45]
 iface eth0 inet static
   address ${SERVER_IP}
   netmask 255.255.255.0
-  gateway 192.168.1.1
+  gateway 198.211.116.45
 
   2. Reboot the VM and ensure the Debian CD is mounted
 
@@ -79,9 +79,7 @@ function install_docker () {
   ssh -t "${SSH_USER}@${SERVER_IP}" bash -c "'
 sudo apt-get update
 sudo apt-get install -y -q libapparmor1 aufs-tools ca-certificates
-wget -O "docker.deb https://apt.dockerproject.org/repo/pool/main/d/docker-engine/docker-engine_${1}-0~jessie_amd64.deb"
-sudo dpkg -i docker.deb
-rm docker.deb
+sudo apt-get install -y docker.io
 sudo usermod -aG docker "${KEY_USER}"
   '"
   echo "done!"
