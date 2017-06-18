@@ -101,8 +101,8 @@ function git_init () {
   scp "git/post-receive/nginx" "${SSH_USER}@${SERVER_IP}:/tmp/nginx"
   ssh -t "${SSH_USER}@${SERVER_IP}" bash -c "'
 sudo apt-get update && sudo apt-get install -y -q git
-sudo rm -rf /var/git/mobydock.git /var/git/mobydock
-sudo mkdir -p /var/git/mobydock.git /var/git/mobydock
+sudo rm -rf /var/git/mobydock.git /var/git/mobydock /var/git/nginx.git /var/git/nginx
+sudo mkdir -p /var/git/mobydock.git /var/git/mobydock /var/git/nginx.git /var/git/nginx
 sudo git --git-dir=/var/git/mobydock.git --bare init
 sudo git --git-dir=/var/git/nginx.git --bare init
 
