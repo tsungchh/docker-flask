@@ -9,3 +9,16 @@ SSL
 openssl req -newkey rsa:2048 -nodes -sha256 -keyout certs/productionexample.key -x509 -days 3650 -out certs/productionexample.crt -subj "/C=US/ST=NewYork/L=NewYork/O=IT/CN=fakemobydock.com"
 
 openssl dhparam -out certs/dhparam.pem 2048
+
+
+------------------------------
+
+git hook
+
+git init
+ git remote add staging ssh://tsungchh@198.211.116.45:/var/git/mobydock.git
+ git add -A
+ git commit -m 'dummy msg'
+ git push staging master
+
+ 
